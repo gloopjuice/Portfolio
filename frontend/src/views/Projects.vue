@@ -4,8 +4,8 @@ import axios from 'axios';
 import '../assets/main.css';
 
 const projects = ref([]);
-const selectedProject = ref(null); // For storing the clicked project details
-const showPopup = ref(false); // For controlling the visibility of the popup
+const selectedProject = ref(null); 
+const showPopup = ref(false); 
 
 onMounted(async () => {
   try {
@@ -18,11 +18,11 @@ onMounted(async () => {
 
 const handleClick = (project) => {
   if (selectedProject.value && selectedProject.value.id === project.id) {
-    // If the clicked project is already selected, close the popup
+   
     selectedProject.value = null;
     showPopup.value = false;
   } else {
-    // Otherwise, select the clicked project and open the popup
+  
     selectedProject.value = project;
     showPopup.value = true;
   }
@@ -36,7 +36,7 @@ const closePopup = () => {
 
 <template>
   <main class="main-container">
-    <h1 style="padding-top: 20vh;">These are some non-music projects I have made</h1>
+    <h1 class="mainheader visible">These are some non-music projects I have made</h1>
     <ul class="projects-grid">
       <li v-for="project in projects" :key="project.id" class="project-item" @click="handleClick(project)">
         <div class="project-image-wrapper">

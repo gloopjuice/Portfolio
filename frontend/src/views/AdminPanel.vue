@@ -56,7 +56,6 @@ const submitStack = async () => {
 
   try {
     if (isEditing.value && editStackId.value) {
-      // Edit existing stack
       const response = await axios.post(`/api/editStack/${editStackId.value}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -66,7 +65,6 @@ const submitStack = async () => {
       const index = stacks.value.findIndex((stack) => stack.id === editStackId.value);
       stacks.value[index] = updatedStack;
     } else {
-      // Create new stack
       const response = await axios.post('/api/createStack', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -92,7 +90,6 @@ const submitProject = async () => {
 
   try {
     if (isEditing.value && editProjectId.value) {
-      // Edit existing project
       const response = await axios.post(`/api/editProject/${editProjectId.value}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -102,7 +99,6 @@ const submitProject = async () => {
       const index = projects.value.findIndex((project) => project.id === editProjectId.value);
       projects.value[index] = updatedProject;
     } else {
-      // Create new project
       const response = await axios.post('/api/createProject', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -128,7 +124,6 @@ const submitMusicProject = async () => {
 
   try {
     if (isEditing.value && editMusicProjectId.value) {
-      // Edit existing music project
       const response = await axios.post(`/api/editMusicProject/${editMusicProjectId.value}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -138,7 +133,6 @@ const submitMusicProject = async () => {
       const index = musicProjects.value.findIndex((musicProject) => musicProject.id === editMusicProjectId.value);
       musicProjects.value[index] = updatedMusicProject;
     } else {
-      // Create new music project
       const response = await axios.post('/api/createMusicProject', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });

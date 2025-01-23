@@ -22,7 +22,7 @@ header {
     left: 0vh;
     background-color: #333;
     color: white;
-    padding: 2vh 0; /* Reduced padding */
+    padding: 2vh 0;
     width: 100%;  
     text-align: left;
 }
@@ -35,7 +35,8 @@ header {
 }
 .nav-link {
     color: white;
-    font-size: 1.5rem; /* Increased font size */
+    font-size: 1.5rem;
+    text-decoration: none; 
 }
 .nav-link:hover {
     color: #ccc;

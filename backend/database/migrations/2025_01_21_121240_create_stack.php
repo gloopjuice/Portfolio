@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('stackname');
             $table->string('stackdescription');
-            $table->binary('stackpicture')->nullable(); // Use binary instead of BLOB
-            $table->timestamps(); // Add timestamps to track creation and updates
+            $table->binary('stackpicture')->nullable(); 
+            $table->timestamps(); 
         });
     }
 
