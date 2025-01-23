@@ -2,7 +2,7 @@
     <header>
         <div id="navbar">
             <router-link to="/" class="nav-link">Home</router-link>
-            <router-link to="/about" class="nav-link">Stacks</router-link>
+            <router-link to="/stacks" class="nav-link">Stacks</router-link>
             <router-link to="/projects" class="nav-link">Projects</router-link>
             <router-link to="/discography" class="nav-link">Discography</router-link>
         </div> 
@@ -22,7 +22,7 @@ header {
     left: 0vh;
     background-color: #333;
     color: white;
-    padding: 5vh 0;
+    padding: 2vh 0; /* Reduced padding */
     width: 100%;  
     text-align: left;
 }
@@ -34,7 +34,8 @@ header {
     width: 50%; 
 }
 .nav-link {
-    color: white; 
+    color: white;
+    font-size: 1.5rem; /* Increased font size */
 }
 .nav-link:hover {
     color: #ccc;
