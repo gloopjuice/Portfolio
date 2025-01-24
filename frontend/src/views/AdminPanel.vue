@@ -20,6 +20,10 @@ const editProjectId = ref(null);
 const editMusicProjectId = ref(null);
 const showModal = ref(false);
 const currentFormType = ref('');
+const showPasswordModal = ref(true);
+const password = ref('');
+
+const correctPassword = '123';
 
 onMounted(async () => {
   try {
@@ -43,6 +47,14 @@ const onFileChange = (event, type) => {
     projectPicture.value = event.target.files[0];
   } else if (type === 'musicProject') {
     musicProjectPicture.value = event.target.files[0];
+  }
+};
+
+const checkPassword = () => {
+  if (password.value === correctPassword) {
+    showPasswordModal.value = false;
+  } else {
+    alert('Incorrect password');
   }
 };
 
@@ -243,10 +255,11 @@ const resetForm = () => {
 </script>
 
 <template>
-  <main>
+  <main v-if="!showPasswordModal">
     <h1 style="padding-top:20vh;"></h1>
-    <button @click="openModal('stack')">Create New Stack</button>
+    
     <h2>Stacks</h2>
+    <button @click="openModal('stack')">Create New Stack</button>
     <ul>
       <li v-for="stack in stacks" :key="stack.id">
         <h3>{{ stack.stackname }}</h3>
@@ -315,9 +328,107 @@ const resetForm = () => {
       </div>
     </div>
   </main>
-</template>
 
+  <div v-else class="modal">
+    <div class="modal-content">
+      <h2>Enter Password</h2>
+      <input v-model="password" type="password" placeholder="Password" />
+      <button @click="checkPassword">Submit</button>
+    </div>
+  </div>
+</template>
 <style>
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: #343a40;
+}
+
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Headings */
+h1, h2 {
+  color: #212529;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Posts List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  margin: 20px 0;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+li h3 {
+  margin: 0;
+  color: #495057;
+}
+
+li p {
+  color: #6c757d;
+  margin: 10px 0;
+}
+
+li img {
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+button:active {
+  background: #004085;
+  transform: scale(1);
+}
+
+button:last-child {
+  background: #dc3545;
+}
+
+button:last-child:hover {
+  background: #c82333;
+}
+
+/* Modal Styling */
 .modal {
   display: flex;
   position: fixed;
@@ -328,6 +439,7 @@ const resetForm = () => {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
 }
 
 .modal-content {
@@ -338,6 +450,18 @@ const resetForm = () => {
   max-width: 500px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .close {
@@ -346,5 +470,39 @@ const resetForm = () => {
   right: 10px;
   cursor: pointer;
   font-size: 20px;
+  color: #6c757d;
+}
+
+.close:hover {
+  color: #495057;
+}
+
+/* Input Fields */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="file"] {
+  padding: 5px;
+}
+
+input:focus, textarea:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background-color: #28a745;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
 }
 </style>
